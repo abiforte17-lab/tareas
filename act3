@@ -1,0 +1,69 @@
+
+# Clase base
+class Celular:
+
+    def __init__(self, marca, modelo, precio, almacenamiento):
+        self.marca = marca
+        self.modelo = modelo
+        self.precio = precio
+        self.almacenamiento = almacenamiento
+
+    # Metodo para mostrar la informacion
+    def mostrar_informacion(self):
+        print("Marca:", self.marca)
+        print("Modelo:", self.modelo)
+        print("Precio: $", self.precio)
+        print("Almacenamiento:", self.almacenamiento, "GB")
+
+
+# Clase hija para celulares con descuento
+class CelularDescuento(Celular):
+
+    def __init__(self, marca, modelo, precio, almacenamiento, descuento):
+        super().__init__(marca, modelo, precio, almacenamiento)
+        self.descuento = descuento
+
+    # Metodo para calcular el descuento
+    def calcular_descuento(self):
+        resultado = self.precio - (self.precio * self.descuento / 100)
+        return resultado
+
+
+# Clase hija para celulares premium
+class CelularPremium(Celular):
+
+    def __init__(self, marca, modelo, precio, almacenamiento, garantia):
+        super().__init__(marca, modelo, precio, almacenamiento)
+        self.garantia = garantia
+
+    # Metodo para mostrar informacion adicional
+    def mostrar_informacion(self):
+        super().mostrar_informacion()
+        print("Tipo: Premium")
+        print("Garantia:", self.garantia, "años")
+
+
+# Programa principal
+
+print("===== VENTA DE CELULARES =====")
+
+# Crear los objetos
+celular1 = CelularPremium("Samsung", "Galaxy A57", 8999, 256, 2)
+celular2 = CelularDescuento("Motorola", "Moto G85", 6999, 256, 10)
+celular3 = CelularPremium("Apple", "iPhone 15", 15999, 128, 2)
+celular4 = CelularDescuento("Redmi", "Note 15", 5999, 256, 10)
+
+
+print("\nCELULAR 1")
+celular1.mostrar_informacion()
+
+print("\nCELULAR 2")
+celular2.mostrar_informacion()
+print("Precio con descuento: $", celular2.calcular_descuento())
+
+print("\nCELULAR 3")
+celular3.mostrar_informacion()
+
+print("\nCELULAR 4")
+celular4.mostrar_informacion()
+print("Precio con descuento: $", celular4.calcular_descuento())
